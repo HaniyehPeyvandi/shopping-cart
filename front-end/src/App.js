@@ -1,9 +1,14 @@
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import CartPage from "./pages/CartPage/CartPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
-    <div>
-    </div>
+    <Routes>
+      <Route path="/cart" element={<CartPage/>} />
+      <Route path="/" element={<HomePage/>} />
+    </Routes>
   );
 }
 
