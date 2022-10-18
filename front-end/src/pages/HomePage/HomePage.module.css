@@ -29,9 +29,13 @@
   align-items: center;
 }
 
-.product img{
-  width: 100%;
+.product .productImg{
   height: 250px;
+}
+
+.product .productImg img{
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

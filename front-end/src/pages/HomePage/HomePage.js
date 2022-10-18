@@ -16,7 +16,7 @@ const HomePage = () => {
         <section className={styles.productList}>
           {data.products.map((p) => (
             <section key={p.id} className={styles.product}>
-              <div>
+              <div className={styles.productImg}>
                 <img src={p.image} alt={p.name} />
               </div>
               <div className={styles.productDesc}>
