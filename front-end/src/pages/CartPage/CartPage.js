@@ -1,9 +1,11 @@
 import Layout from "../../Layout/Layout";
 import styles from "./CartPage.module.css";
-import { useCart } from "../../Providers/CartProvider";
+import { useCart, useCartActions } from "../../Providers/CartProvider";
+import { BiTrash } from "react-icons/bi";
 
 const CartPage = () => {
   const { cart } = useCart();
+  const dispatch = useCartActions();
 
   if (!cart.length)
     return (
@@ -35,9 +37,15 @@ const CartPage = () => {
                   <div>{item.name}</div>
                   <div>$ {item.price}</div>
                   <div className={styles.btnGroup}>
-                    <button>+</button>
+                    <button
+                      onClick={() =>
+                        dispatch({ type: "ADD_TO_CART", payload: item })
+                      }
+                    >
+                      +
+                    </button>
                     <button>{item.quantity}</button>
-                    <button>-</button>
+                    <button>{item.quantity > 1 ? "-" : <BiTrash />}</button>
                   </div>
                   <div>$ {item.price * item.quantity}</div>
                 </div>
