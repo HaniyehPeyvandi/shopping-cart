@@ -1,10 +1,13 @@
 import Layout from "../../Layout/Layout";
 import styles from "./HomePage.module.css";
 import * as data from "../../data";
+import { useCartActions } from "../../Providers/CartProvider";
 
 const HomePage = () => {
+  const dispatch = useCartActions();
+
   const addProductHandler = (product) => {
-    console.log(product);
+    dispatch({type:'ADD_TO_CART',payload:product})
   }
 
   return (
