@@ -33,3 +33,17 @@
   color: #6d28d9;
   background-color: #fff;
 }
+
+.cartBadge{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6d28d9;
+  color: #fff;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-left: 4px;
+}
