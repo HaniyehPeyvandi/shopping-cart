@@ -91,3 +91,7 @@
   border-left: none;
 }
 
+.btnGroup button:last-child svg{
+  height: 0.9em;
+}
+
