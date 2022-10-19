@@ -31,7 +31,16 @@ const HomePage = () => {
               </div>
               <div className={styles.productDesc}>
                 <p>{p.name}</p>
-                <p>$ {p.price}</p>
+                <p className={styles.productPrice}>
+                  {p.discount > 0 ? (
+                    <>
+                      <del>$ {p.price}</del>
+                      <span>$ {p.offPrice}</span>
+                    </>
+                  ) : (
+                    <span>$ {p.price}</span>
+                  )}
+                </p>
                 <button
                   className={styles.btn}
                   onClick={() => addProductHandler(p)}
