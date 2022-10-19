@@ -4,8 +4,16 @@ import { useCart, useCartActions } from "../../Providers/CartProvider";
 import { BiTrash } from "react-icons/bi";
 
 const CartPage = () => {
-  const { cart } = useCart();
+  const { cart,total } = useCart();
   const dispatch = useCartActions();
+
+  const addProductHandler = (item) => {
+    dispatch({ type: "ADD_TO_CART", payload: item });
+  };
+
+  const removeProductHandler = (item) => {
+    dispatch({ type: "REMOVE_PRODUCT", payload: item });
+  };
 
   if (!cart.length)
     return (
@@ -37,22 +45,21 @@ const CartPage = () => {
                   <div>{item.name}</div>
                   <div>$ {item.price}</div>
                   <div className={styles.btnGroup}>
-                    <button
-                      onClick={() =>
-                        dispatch({ type: "ADD_TO_CART", payload: item })
-                      }
-                    >
-                      +
-                    </button>
+                    <button onClick={() => addProductHandler(item)}>+</button>
                     <button>{item.quantity}</button>
-                    <button>{item.quantity > 1 ? "-" : <BiTrash />}</button>
+                    <button onClick={() => removeProductHandler(item)}>
+                      {item.quantity > 1 ? "-" : <BiTrash />}
+                    </button>
                   </div>
                   <div>$ {item.price * item.quantity}</div>
                 </div>
               );
             })}
           </section>
-          <section className={styles.cartSummary}>cart summary</section>
+          <section className={styles.cartSummary}>
+            <h3>Cart Summary</h3>
+            <div>total : {total}</div>
+          </section>
         </section>
       </main>
     </Layout>
