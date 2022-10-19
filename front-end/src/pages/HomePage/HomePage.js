@@ -1,13 +1,19 @@
 import Layout from "../../Layout/Layout";
 import styles from "./HomePage.module.css";
 import * as data from "../../data";
-import { useCartActions } from "../../Providers/CartProvider";
+import { useCart, useCartActions } from "../../Providers/CartProvider";
+
 
 const HomePage = () => {
   const dispatch = useCartActions();
+  const {cart} = useCart();
 
   const addProductHandler = (product) => {
-    dispatch({type:'ADD_TO_CART',payload:product})
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+
+  const checkInCart = (cart,product) => {
+    return cart.find(item => item.id === product.id);
   }
 
   return (
@@ -22,7 +28,12 @@ const HomePage = () => {
               <div className={styles.productDesc}>
                 <p>{p.name}</p>
                 <p>$ {p.price}</p>
-                <button className={styles.btn} onClick={() => addProductHandler(p)}>Add to Cart</button>
+                <button
+                  className={styles.btn}
+                  onClick={() => addProductHandler(p)}
+                >
+                  {checkInCart(cart,p) ? "In Cart" : "Add to Cart"}
+                </button>
               </div>
             </section>
           ))}
