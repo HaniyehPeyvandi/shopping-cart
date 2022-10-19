@@ -2,6 +2,7 @@ import Layout from "../../Layout/Layout";
 import styles from "./CartPage.module.css";
 import { useCart, useCartActions } from "../../Providers/CartProvider";
 import { BiTrash } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cart, total } = useCart();
@@ -81,10 +82,13 @@ const CartSummary = ({ total, cart }) => {
         <p>cart discount</p>
         <p>$ {originalTotalPrice - total}</p>
       </div>
-      <div className={styles.summaryItem}>
+      <div className={`${styles.summaryItem} ${styles.totalPrice}`}>
         <p>net price</p>
         <p>$ {total}</p>
       </div>
+      <Link to="/checkout">
+        <button className={styles.btn}>Checkout</button>
+      </Link>
     </section>
   );
 };
