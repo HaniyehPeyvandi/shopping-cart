@@ -4,7 +4,7 @@ import { useCart, useCartActions } from "../../Providers/CartProvider";
 import { BiTrash } from "react-icons/bi";
 
 const CartPage = () => {
-  const { cart,total } = useCart();
+  const { cart, total } = useCart();
   const dispatch = useCartActions();
 
   const addProductHandler = (item) => {
@@ -43,7 +43,7 @@ const CartPage = () => {
                     <img src={item.image} alt={item.name} />
                   </div>
                   <div>{item.name}</div>
-                  <div>$ {item.price}</div>
+                  <div>$ {item.offPrice}</div>
                   <div className={styles.btnGroup}>
                     <button onClick={() => addProductHandler(item)}>+</button>
                     <button>{item.quantity}</button>
@@ -51,15 +51,12 @@ const CartPage = () => {
                       {item.quantity > 1 ? "-" : <BiTrash />}
                     </button>
                   </div>
-                  <div>$ {item.price * item.quantity}</div>
+                  <div>$ {item.offPrice * item.quantity}</div>
                 </div>
               );
             })}
           </section>
-          <section className={styles.cartSummary}>
-            <h3>Cart Summary</h3>
-            <div>$ {total}</div>
-          </section>
+          <CartSummary total={total} cart={cart} />
         </section>
       </main>
     </Layout>
@@ -67,3 +64,27 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+const CartSummary = ({ total, cart }) => {
+  const originalTotalPrice = cart.length
+    ? cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+    : 0;
+
+  return (
+    <section className={styles.cartSummary}>
+      <h3>Cart Summary</h3>
+      <div className={styles.summaryItem}>
+        <p>original total price</p>
+        <p>$ {originalTotalPrice}</p>
+      </div>
+      <div className={styles.summaryItem}>
+        <p>cart discount</p>
+        <p>$ {originalTotalPrice - total}</p>
+      </div>
+      <div className={styles.summaryItem}>
+        <p>net price</p>
+        <p>$ {total}</p>
+      </div>
+    </section>
+  );
+};
