@@ -1,9 +1,9 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
 }
 
-.cartCenter{
+.cartCenter {
   display: flex;
   justify-content: center;
   width: 90vw;
@@ -11,14 +11,14 @@
   margin-top: 50px;
 }
 
-.cartMsg{
+.cartMsg {
   margin-top: 30px;
   background-color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
 }
 
-.cartItemList{
+.cartItemList {
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -28,28 +28,28 @@
   padding: 1rem;
 }
 
-.cartItem{
+.cartItem {
   display: grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 5px 0;
 }
 
-.cartItem .itemImg{
+.cartItem .itemImg {
   width: 100px;
   height: 80px;
 }
 
-.cartItem .itemImg img{
+.cartItem .itemImg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.cartSummary{
+.cartSummary {
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -60,9 +60,9 @@
   padding: 1rem;
 }
 
-.cartHeader{
+.cartHeader {
   display: grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
   border-bottom: 2px solid #ccc;
@@ -71,43 +71,54 @@
   font-weight: bold;
 }
 
-.btnGroup button{
-  border: none;
+.btnGroup button {
   outline: none;
   color: #6d28d9;
   border: 1px solid #6d28d9;
   background-color: #fff;
-  padding: 5px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 
-.btnGroup button:first-child{
+.btnGroup button:first-child {
   border-radius: 5px 0 0 5px;
   border-right: none;
 }
 
-.btnGroup button:last-child{
+.btnGroup button:last-child {
   border-radius: 0 5px 5px 0;
   border-left: none;
 }
 
-.btnGroup button:last-child svg{
+.btnGroup button:last-child svg {
   height: 0.9em;
 }
 
-.cartSummary h3{
+.cartSummary h3 {
   margin-bottom: 30px;
   padding-top: 15px;
 }
 
-.cartSummary .summaryItem{
+.cartSummary .summaryItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.summaryItem:last-child{
+.summaryItem.totalPrice {
   border-top: 1px solid #ccc;
   padding-top: 10px;
+}
+
+.cartSummary .btn {
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: #6d28d9;
+  border-radius: 5px;
+  padding: 6px 15px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
 }
