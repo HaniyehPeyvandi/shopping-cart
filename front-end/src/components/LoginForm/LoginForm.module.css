@@ -1,0 +1,22 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 8px 15px;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: #6d28d9;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.link{
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+}
