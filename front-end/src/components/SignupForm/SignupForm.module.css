@@ -14,3 +14,9 @@
   cursor: pointer;
   width: 100%;
 }
+
+.link{
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+}
