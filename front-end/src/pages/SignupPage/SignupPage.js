@@ -1,7 +1,12 @@
+import SignupForm from "../../components/SignupForm/SignupForm";
 import Layout from "../../Layout/Layout";
 
 const SignupPage = () => {
-  return <Layout>Signup Page</Layout>;
+  return (
+    <Layout>
+      <SignupForm />
+    </Layout>
+  );
 };
 
 export default SignupPage;
