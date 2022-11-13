@@ -3,14 +3,12 @@ import styles from "./LoginForm.module.css";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
+import { loginUser } from "../../services/loginService";
 
 const initialValues = {
   email: "",
   password: "",
-};
-
-const onSubmit = (values) => {
-  console.log(values);
 };
 
 const validationSchema = Yup.object({
@@ -21,6 +19,19 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values) => {
+    try {
+      const { data } = await loginUser(values);
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -42,6 +53,7 @@ const LoginForm = () => {
         <button type="submit" disabled={!formik.isValid} className={styles.btn}>
           Login
         </button>
+        {error && <p className={styles.errorMsg}>{error}</p>}
         <Link to="/signup" className={styles.link}>
           <p>Don't have an account yet?</p>
         </Link>

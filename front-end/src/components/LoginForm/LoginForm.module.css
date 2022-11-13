@@ -20,3 +20,8 @@
   margin-top: 15px;
   text-decoration: none;
 }
+
+.errorMsg{
+  color: red;
+  margin-top: 10px;
+}
