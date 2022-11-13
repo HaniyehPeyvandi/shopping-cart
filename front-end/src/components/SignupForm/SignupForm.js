@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Input from "../../common/Input/Input";
 import styles from "./SignupForm.module.css";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { signupUser } from "../../services/signupService";
 
 const initialValues = {
   name: "",
@@ -10,10 +12,6 @@ const initialValues = {
   phoneNumber: "",
   password: "",
   passwordConfirm: "",
-};
-
-const onSubmit = (values) => {
-  console.log(values);
 };
 
 const validationSchema = Yup.object({
@@ -27,7 +25,9 @@ const validationSchema = Yup.object({
     .required("Phone Number is required")
     .matches(/^[0-9]{11}$/, "Phone Number is invalid")
     .nullable(),
-  password: Yup.string().required("Password is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Password length must be at least 8 characters long"),
   // .matches(
   //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
   //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
@@ -38,6 +38,22 @@ const validationSchema = Yup.object({
 });
 
 const SignupForm = () => {
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values) => {
+    const { name, email, phoneNumber, password } = values;
+    const userData = { name, email, phoneNumber, password };
+
+    try {
+      const { data } = await signupUser(userData);
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -72,6 +88,7 @@ const SignupForm = () => {
         <button type="submit" disabled={!formik.isValid} className={styles.btn}>
           Sign up
         </button>
+        {error && <p className={styles.errorMsg}>{error}</p>}
         <Link to="/login" className={styles.link}>
           <p>Already have login and password?</p>
         </Link>
