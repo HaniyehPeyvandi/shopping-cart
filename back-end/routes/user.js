@@ -36,7 +36,7 @@ router.post(
     if (emailExist)
       return res.status(400).json({ message: "Email already exists !" });
     if (phoneNumberExist)
-      return res.status(400).json({ message: "phone Number already exists !" });
+      return res.status(400).json({ message: "Phone Number already exists !" });
 
     // HASH PASSWORD :
     const salt = await bcrypt.genSaltSync(10);
@@ -75,12 +75,12 @@ router.post(
 
     // checking if the email exists :
     const user = await User.findOne({ email: req.body.email.toLowerCase() });
-    if (!user) return res.status(400).json({ message: "ایمیل وجود ندارد" });
+    if (!user) return res.status(400).json({ message: "Email does not exist" });
 
     // PASSWORD IS CORRECT :
     const validPass = await bcrypt.compare(req.body.password, user.password);
     if (!validPass)
-      return res.status(400).json({ message: "ایمیل یا رمز عبور اشتباه است" });
+      return res.status(400).json({ message: "Email or password is wrong" });
 
     res.send({
       _id: user._id,
