@@ -9,6 +9,7 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AuthProvider from "./Providers/AuthProvider";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <CartProvider>
         <ToastContainer />
         <Routes>
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
