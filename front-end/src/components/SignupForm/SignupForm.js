@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../common/Input/Input";
 import styles from "./SignupForm.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signupUser } from "../../services/signupService";
-import { useAuthActions } from "../../Providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../Providers/AuthProvider";
 
 const initialValues = {
   name: "",
@@ -42,6 +42,14 @@ const SignupForm = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const setAuth = useAuthActions();
+  const auth = useAuth();
+
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get('redirect') || "/";
+
+  useEffect(() => {
+    if(auth) navigate(redirect !== "/" ? `/${redirect}` : redirect);
+  },[redirect,auth,navigate]);
 
   const onSubmit = async (values) => {
     const { name, email, phoneNumber, password } = values;
@@ -51,7 +59,7 @@ const SignupForm = () => {
       const { data } = await signupUser(userData);
       setAuth(data);
       setError(null);
-      navigate("/");
+      navigate(redirect !== "/" ? `/${redirect}` : redirect);
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -94,7 +102,7 @@ const SignupForm = () => {
           Sign up
         </button>
         {error && <p className={styles.errorMsg}>{error}</p>}
-        <Link to="/login" className={styles.link}>
+        <Link to={`/login?redirect=${redirect}`} className={styles.link}>
           <p>Already have login and password?</p>
         </Link>
       </form>

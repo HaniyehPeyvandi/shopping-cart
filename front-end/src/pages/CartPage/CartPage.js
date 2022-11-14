@@ -75,18 +75,18 @@ const CartSummary = ({ total, cart }) => {
     <section className={styles.cartSummary}>
       <h3>Cart Summary</h3>
       <div className={styles.summaryItem}>
-        <p>original total price</p>
+        <p>Total cart</p>
         <p>$ {originalTotalPrice}</p>
       </div>
       <div className={styles.summaryItem}>
-        <p>cart discount</p>
+        <p>Cart discount</p>
         <p>$ {originalTotalPrice - total}</p>
       </div>
       <div className={`${styles.summaryItem} ${styles.totalPrice}`}>
-        <p>net price</p>
+        <p>Total price</p>
         <p>$ {total}</p>
       </div>
-      <Link to="/checkout">
+      <Link to="/signup?redirect=checkout">
         <button className={styles.btn}>Checkout</button>
       </Link>
     </section>
