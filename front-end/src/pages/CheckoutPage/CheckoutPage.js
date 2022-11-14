@@ -1,7 +1,7 @@
 import Layout from "../../Layout/Layout";
 import { useAuth } from "../../Providers/AuthProvider";
 import { useCart } from "../../Providers/CartProvider";
-import styles from "./Checkout.module.css";
+import styles from "./CheckoutPage.module.css";
 import { Link } from "react-router-dom";
 
 const CheckoutPage = () => {
