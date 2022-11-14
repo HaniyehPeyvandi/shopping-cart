@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { loginUser } from "../../services/loginService";
+import { useAuthActions } from "../../Providers/AuthProvider";
 
 const initialValues = {
   email: "",
@@ -21,10 +22,12 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const setAuth = useAuthActions();
 
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
+      setAuth(data);
       setError(null);
       navigate("/");
     } catch (error) {
@@ -53,7 +56,7 @@ const LoginForm = () => {
           type="password"
         />
         <button type="submit" disabled={!formik.isValid} className={styles.btn}>
-          Login
+          Log in
         </button>
         {error && <p className={styles.errorMsg}>{error}</p>}
         <Link to="/signup" className={styles.link}>
