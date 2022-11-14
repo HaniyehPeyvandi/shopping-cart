@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import AuthProvider from "./Providers/AuthProvider";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </CartProvider>
     </AuthProvider>
