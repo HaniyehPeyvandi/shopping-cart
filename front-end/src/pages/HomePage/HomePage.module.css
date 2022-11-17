@@ -1,20 +1,20 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
 }
 
-.productList{
+.productList {
   margin: 50px 0;
   border-radius: 5px;
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   grid-column-gap: 5rem;
   grid-row-gap: 5rem;
   max-width: 1170px;
   width: 90vw;
 }
 
-.product{
+.product {
   background-color: #ede9fe;
   display: flex;
   flex-direction: column;
@@ -22,24 +22,24 @@
   overflow: hidden;
 }
 
-.product .productDesc{
+.product .productDesc {
   padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.product .productImg{
+.product .productImg {
   height: 250px;
 }
 
-.product .productImg img{
+.product .productImg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.productDesc .btn{
+.productDesc .btn {
   outline: none;
   border: none;
   color: #fff;
@@ -49,7 +49,7 @@
   cursor: pointer;
 }
 
-.productPrice del{
+.productPrice del {
   color: #555;
   margin-right: 10px;
 }
